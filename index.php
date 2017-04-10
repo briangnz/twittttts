@@ -35,17 +35,7 @@ $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=AVeces
         </div>
 
         <script type="text/javascript" src="jquery.js"></script>
-        <script type="text/javascript">
-            async: true;
-            window.setTimeout("fadeMyDiv()", 1000);
-            
-
-            function fadeMyDiv() {
-                $("#load").load('index.php/#load');
-                
-            }
-
-        </script>
+        
 
     </body>
 
