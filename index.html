@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Ranking de Ganadores</title>
+        <style type="text/css">
+        body {
+            font-family: 'Roboto',sans-serif;
+            margin-left: 4%;
+            margin-right: 4%;
+            background-image: url('https://raw.githubusercontent.com/briangnz/twittttts/master/bg.jpg');
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color:#fff;
+        }
+        table {
+            border-collapse: collapse;
+            border: 2px #c90 solid;
+            width: 800px;
+        }
+        thead{
+            background: #c90;
+            font-size: 30px;
+        }
+        th {
+            text-align: center;
+            font-weight: 400;
+            text-transform: uppercase;
+            padding: 20px;
+            border: 9px #c90 solid;
+            font-family: 'Raleway',sans-serif;
+            text-shadow: 0.5px 0.5px #fff;
+        }
+        td {
+            border: 1px #c90 solid;
+            text-align: justify;
+            padding: 5px;
+            padding-left: 16px;
+            font-size: 20px;
+            border: 9px #c90 solid;
+            padding-bottom: 9px;
+            padding-top: 9px;
+        }
+
+        td:nth-child(2){
+            text-align: center;
+        }
+        #viz6 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            margin-left: -273px;
+            margin-top: -18%;/*half height*/
+        }
+        </style>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.2.8/d3.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+        d3.text("https://raw.githubusercontent.com/briangnz/twittttts/master/data2.txt", function (datasetText) {
+        var rows = d3.csv.parseRows(datasetText);
+        var tbl = d3.select("#viz6")
+        .append("table");
+        // headers
+        tbl.append("thead").append("tr")
+        .selectAll("th")
+        .data(rows[0])
+        .enter().append("th")
+        .text(function(d) {
+        return d;
+        });
+        // data
+        tbl.append("tbody")
+        .selectAll("tr").data(rows.slice(1))
+        .enter().append("tr")
+        .selectAll("td")
+        .data(function(d){return d;})
+        .enter().append("td")
+        .text(function(d){return d;})
+        });
+        </script>
+    </head>
+    <body>
+        <div id="viz6"></div>
+    </body>
+</html>
